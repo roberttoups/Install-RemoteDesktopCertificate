@@ -6,6 +6,7 @@
     "inkey",
     "openssl",
     "pkcs",
+    "remoting",
     "terminalservices"
   ]
 }
