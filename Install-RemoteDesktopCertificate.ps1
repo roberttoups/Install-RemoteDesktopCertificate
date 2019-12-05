@@ -60,7 +60,7 @@ Set-StrictMode -Version Latest
 #----------------------------------------------------------------------------------------------------------------------#
 $RunTime = [System.Diagnostics.Stopwatch]::StartNew()
 #----------------------------------------------------------------------------------------------------------------------#
-# Obtain Fully Qualified Name and Set the Issuer
+# Obtain Fully Qualified Name and Set the Subject
 #----------------------------------------------------------------------------------------------------------------------#
 $LocalFqdn = (([System.Net.Dns]::GetHostByName(($env:COMPUTERNAME))).Hostname).ToLower()
 $Subject = "CN=$LocalFqdn"
