@@ -13,6 +13,7 @@ param(
     Mandatory = $true,
     HelpMessage = "The Path to the Let's Encrypt PFX file."
   )]
+  [Alias('f')]
   [ValidateScript(
     { Test-Path -Path $_ -PathType 'Leaf' -Filter '*.pfx' }
   )]
@@ -25,6 +26,7 @@ param(
     Mandatory = $false,
     HelpMessage = 'The password for the private key. This is a secure string.'
   )]
+  [Alias('p')]
   [ValidateNotNull()]
   [SecureString]
   $Password = (Read-Host -Prompt 'Certificate PFX Password' -AsSecureString),
