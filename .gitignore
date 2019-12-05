@@ -1,0 +1,7 @@
+*
+!.gitignore
+!.vscode
+!.vscode/*
+!README.md
+!LICENSE.md
+!Install-RemoteDesktopCertificate.ps1
