@@ -6,6 +6,16 @@ The `Install-RemoteDesktopCertificate.ps1` PowerShell Script is my method for in
 
 There is an effort on this script to test and verify that the certificate is installed for RDP sessions successfully. Because of the short term nature of Let's Encrypt certificates, you will be updating your local certificate at least every 90 days.
 
+Because this PowerShell script modifies the local certificate store, you will require local Administrator rights in order to successfully execute it. If you do not have the required elevated privileges you will receive a similar error message as displayed below.
+
+```powershell
+(Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))): Failed to import certificate: C:\Users\Administrator\Desktop\test.ad.toups.io.pfx Exiting. At C:\Users\Administrator\Documents\git\Install-RemoteDesktopCertificate\Install-RemoteDesktopCertificate.ps1:80 char:3
++   throw "($ErrorMessage): $SpecificReason Exiting."
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: ((Access is deni...io.pfx Exiting.:String) [], RuntimeException
+    + FullyQualifiedErrorId : (Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))): Failed to import certificate: C:\Users\Administrator\Desktop\test.toups.io.pfx Exiting.
+```
+
 ## Syntax
 
 ```powershell
