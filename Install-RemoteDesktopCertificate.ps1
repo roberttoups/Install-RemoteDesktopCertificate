@@ -31,9 +31,19 @@ param(
   [SecureString]
   $Password = (Read-Host -Prompt 'Certificate PFX Password' -AsSecureString),
 
-  # The location to store the Let's Encrypt PFX certificate.
+  # The fully qualified domain name of the system.
   [Parameter(
     Position = 2,
+    Mandatory = $false,
+    HelpMessage = 'The fully qualified domain name of the system.'
+  )]
+  [ValidateNotNull()]
+  [String]
+  $LocalFqdn = $((([System.Net.Dns]::GetHostByName(($env:COMPUTERNAME))).Hostname).ToLower()),
+
+  # The location to store the Let's Encrypt PFX certificate.
+  [Parameter(
+    Position = 3,
     Mandatory = $false,
     HelpMessage = "The location to store the Let's Encrypt PFX certificate."
   )]
@@ -43,7 +53,7 @@ param(
 
   # The distinguished name for Let's Encrypt.
   [Parameter(
-    Position = 3,
+    Position = 4,
     Mandatory = $false,
     HelpMessage = "The distinguished name for Let's Encrypt."
   )]
@@ -60,9 +70,8 @@ Set-StrictMode -Version Latest
 #----------------------------------------------------------------------------------------------------------------------#
 $RunTime = [System.Diagnostics.Stopwatch]::StartNew()
 #----------------------------------------------------------------------------------------------------------------------#
-# Obtain Fully Qualified Name and Set the Subject
+# Set the Subject
 #----------------------------------------------------------------------------------------------------------------------#
-$LocalFqdn = (([System.Net.Dns]::GetHostByName(($env:COMPUTERNAME))).Hostname).ToLower()
 $Subject = "CN=$LocalFqdn"
 #----------------------------------------------------------------------------------------------------------------------#
 # Install Let's Encrypt PFX Certificate into $CertificateStoreLocation
