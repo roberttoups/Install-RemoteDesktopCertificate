@@ -56,7 +56,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CertificateStoreLocation
+### -LocalFqdn
 
 The location to store the Let's Encrypt PFX certificate.
 
@@ -67,6 +67,22 @@ Aliases:
 
 Required: False
 Position: 2
+Default value: (([System.Net.Dns]::GetHostByName(($env:COMPUTERNAME))).Hostname).ToLower()
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CertificateStoreLocation
+
+The location to store the Let's Encrypt PFX certificate.
+
+```yaml
+Type: String
+Parameter Sets: (ALL)
+Aliases:
+
+Required: False
+Position: 3
 Default value: 'Cert:\LocalMachine\My'
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -82,7 +98,7 @@ Parameter Sets: (ALL)
 Aliases:
 
 Required: False
-Position: 2
+Position: 4
 Default value: "CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US"
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -94,6 +110,13 @@ This example will allow you to type in the PFX certificate password manually as 
 
 ```powershell
 PS > .\Install-RemoteDesktopCertificate.ps1 -Path .\test.toups.io.pfx
+Certificate PFX Password: ***********
+```
+
+This example will allow you to type in the PFX certificate password manually as a secure string and set the local fully qualified domain name of the computer.
+
+```powershell
+PS > .\Install-RemoteDesktopCertificate.ps1 -Path .\test.toups.io.pfx -LocalFqdn 'test.ad.toups.io'
 Certificate PFX Password: ***********
 ```
 
