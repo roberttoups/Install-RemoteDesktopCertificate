@@ -109,7 +109,7 @@ if($null -eq $CertificateThumbprint) {
 #----------------------------------------------------------------------------------------------------------------------#
 $ArgumentCollection = @{
   Path        = $RemoteDesktopSetting.__path
-  Argument    = @{SSLCertificateSHA1Hash = "$CertificateThumbprint" }
+  Argument    = @{ SSLCertificateSHA1Hash = "$CertificateThumbprint" }
   ErrorAction = 'Stop'
 }
 try {
