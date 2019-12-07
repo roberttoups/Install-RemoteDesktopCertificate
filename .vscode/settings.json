@@ -3,6 +3,7 @@
     "accessdenied",
     "certfile",
     "cimv",
+    "computername",
     "deni",
     "e",
     "fullchain",
@@ -11,6 +12,7 @@
     "openssl",
     "pkcs",
     "remoting",
-    "terminalservices"
+    "terminalservices",
+    "typora"
   ]
 }
