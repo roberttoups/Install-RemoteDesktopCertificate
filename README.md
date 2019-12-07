@@ -198,21 +198,21 @@ Enter Export Password: ***********
 Verifying - Enter Export Password: ***********
 ```
 
-#### How to Rollback from a Failed Installation
+### How to Rollback from a Failed Installation
 
 If for some reason the installation of the certificate causes your Remote Desktop Session to fail, you can roll back easily by deleting the newly installed Let's Encrypt certificate and restarting the **Remote Desktop Configuration** Windows Service.
 
-##### Sample Code
+#### Sample Code
 
 You must know the Certificate thumbprint to insert into the variable.
 
-###### Discover the Certificate Thumbprint
+##### Discover the Certificate Thumbprint
 
 ```powershell
 Get-ChildItem -Path 'Cert:\LocalMachine\My' | Sort-Object -Property NotAfter -Descending | Format-Table -Property Thumbprint,Subject,NotAfter
 ```
 
-###### Remove the Certificate & Restart Remote Desktop Configuration Windows Service
+##### Remove the Certificate & Restart Remote Desktop Configuration Windows Service
 
 ```powershell
 $CertificateThumbprint = '4293D5FF5A2D18212D5868D24948E3557365BFA0'
