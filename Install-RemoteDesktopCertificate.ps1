@@ -82,7 +82,7 @@ $ArgumentCollection = @{
   CertStoreLocation = $CertificateStoreLocation
 }
 try {
-  $ImportedCertificate = Import-PfxCertificate @ArgumentCollection
+  $null = Import-PfxCertificate @ArgumentCollection
 } catch {
   $SpecificReason = "Failed to import certificate: $Path"
   $ErrorMessage = $PSItem.Exception.Message
