@@ -82,7 +82,7 @@ $ArgumentCollection = @{
   CertStoreLocation = $CertificateStoreLocation
 }
 try {
-  $ImportedCertificate = Import-PfxCertificate @ArgumentCollection
+  $null = Import-PfxCertificate @ArgumentCollection
 } catch {
   $SpecificReason = "Failed to import certificate: $Path"
   $ErrorMessage = $PSItem.Exception.Message
@@ -144,7 +144,7 @@ try {
   $ErrorMessage = $PSItem.Exception.Message
   throw "($ErrorMessage): $SpecificReason Exiting."
 }
-if($RemoteDesktopSetting.SSLCertificateSHA1Hash -eq $ImportedCertificate.Thumbprint) {
+if($RemoteDesktopSetting.SSLCertificateSHA1Hash -eq $CertificateThumbprint) {
   Write-Host "Successfully imported and installed $Path" -ForegroundColor 'Green'
 } else {
   Write-Host "Failed to import and install $Path" -ForegroundColor 'Yellow'
