@@ -109,6 +109,7 @@ try {
 #----------------------------------------------------------------------------------------------------------------------#
 $CertificateThumbprint = Get-ChildItem -Path $CertificateStoreLocation |
   Where-Object { $_.Issuer -eq $LetsEncryptDistinguishedName -and $_.Subject -eq $Subject } |
+  Where-Object { (Get-Date $_.NotAfter) -gt (Get-Date) } |
   Select-Object -ExpandProperty 'Thumbprint'
 if($null -eq $CertificateThumbprint) {
   throw "Unable to locate Let's Encrypt Certificate that was imported."
