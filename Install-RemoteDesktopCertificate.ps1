@@ -59,7 +59,7 @@ param(
   )]
   [ValidateNotNull()]
   [String]
-  $LetsEncryptDistinguishedName = "CN=R3, O=Let's Encrypt, C=US"
+  $LetsEncryptDistinguishedName = "CN=ZeroSSL RSA Domain Secure Site CA, O=ZeroSSL, C=AT"
 )
 #----------------------------------------------------------------------------------------------------------------------#
 # Let's Be Strict About This
