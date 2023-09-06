@@ -59,7 +59,7 @@ param(
   )]
   [ValidateNotNull()]
   [String]
-  $LetsEncryptDistinguishedName = "CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US"
+  $LetsEncryptDistinguishedName = 'CN=ZeroSSL ECC Domain Secure Site CA, O=ZeroSSL, C=AT'
 )
 #----------------------------------------------------------------------------------------------------------------------#
 # Let's Be Strict About This
@@ -100,7 +100,7 @@ $ArgumentCollection = @{
 try {
   $RemoteDesktopSetting = Get-WmiObject @ArgumentCollection
 } catch {
-  $SpecificReason = "Failed to obtain the Remote Desktop Configuration."
+  $SpecificReason = 'Failed to obtain the Remote Desktop Configuration.'
   $ErrorMessage = $PSItem.Exception.Message
   throw "($ErrorMessage): $SpecificReason Exiting."
 }
@@ -111,7 +111,7 @@ $CertificateThumbprint = Get-ChildItem -Path $CertificateStoreLocation |
   Where-Object { $_.Issuer -eq $LetsEncryptDistinguishedName -and $_.Subject -eq $Subject } |
   Where-Object { (Get-Date $_.NotAfter) -gt (Get-Date) } |
   Select-Object -ExpandProperty 'Thumbprint'
-if($null -eq $CertificateThumbprint) {
+if ($null -eq $CertificateThumbprint) {
   throw "Unable to locate Let's Encrypt Certificate that was imported."
 }
 #----------------------------------------------------------------------------------------------------------------------#
@@ -125,7 +125,7 @@ $ArgumentCollection = @{
 try {
   $null = Set-WmiInstance @ArgumentCollection
 } catch {
-  $SpecificReason = "Unable to apply the new certificate to the Remote Desktop configuration."
+  $SpecificReason = 'Unable to apply the new certificate to the Remote Desktop configuration.'
   $ErrorMessage = $PSItem.Exception.Message
   throw "($ErrorMessage): $SpecificReason Exiting."
 }
@@ -141,11 +141,11 @@ $ArgumentCollection = @{
 try {
   $RemoteDesktopSetting = Get-WmiObject @ArgumentCollection
 } catch {
-  $SpecificReason = "Failed to obtain the Remote Desktop Configuration."
+  $SpecificReason = 'Failed to obtain the Remote Desktop Configuration.'
   $ErrorMessage = $PSItem.Exception.Message
   throw "($ErrorMessage): $SpecificReason Exiting."
 }
-if($RemoteDesktopSetting.SSLCertificateSHA1Hash -eq $CertificateThumbprint) {
+if ($RemoteDesktopSetting.SSLCertificateSHA1Hash -eq $CertificateThumbprint) {
   Write-Host "Successfully imported and installed $Path" -ForegroundColor 'Green'
 } else {
   Write-Host "Failed to import and install $Path" -ForegroundColor 'Yellow'

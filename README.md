@@ -99,7 +99,7 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: "CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US"
+Default value: "CN=ZeroSSL RSA Domain Secure Site CA, O=ZeroSSL, C=AT"
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
